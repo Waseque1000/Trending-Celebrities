@@ -3,7 +3,12 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
+import Header from "./components/Header";
+import Home from "./pages/Home";
+import Celebrities from "./pages/Celebrities";
+import CelebrityProfile from "./pages/CelebrityProfile";
+import TodaysBirthdays from "./pages/TodaysBirthdays";
+import Trending from "./pages/Trending";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -14,9 +19,13 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <Header />
         <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/" element={<Home />} />
+          <Route path="/celebrities" element={<Celebrities />} />
+          <Route path="/celebrity/:id" element={<CelebrityProfile />} />
+          <Route path="/today" element={<TodaysBirthdays />} />
+          <Route path="/trending" element={<Trending />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
