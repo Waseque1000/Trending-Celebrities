@@ -3,16 +3,22 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import CelebrityCard from "@/components/CelebrityCard";
 import { getTrendingCelebrities, celebrities } from "@/data/celebrities";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Trending = () => {
   const trendingCelebs = getTrendingCelebrities();
   const hotList = [...celebrities].sort((a, b) => b.popularity - a.popularity);
   const risingStars = celebrities.filter(c => c.age < 30).sort((a, b) => b.popularity - a.popularity).slice(0, 3);
+  const isMobile = useIsMobile();
 
   const getTrendingRank = (index: number) => {
     switch (index) {
       case 0:
-        return { icon: <Crown className="h-5 w-5 text-yellow-400" />, label: "#1 Trending", color: "bg-gradient-to-r from-yellow-400 to-orange-500 text-white" };
+        // Use orange-red gradient on mobile, yellow-orange on desktop
+        const firstColor = isMobile 
+          ? { icon: <Crown className="h-5 w-5 text-orange-400" />, color: "bg-gradient-to-r from-orange-500 to-red-500 text-white" }
+          : { icon: <Crown className="h-5 w-5 text-yellow-400" />, color: "bg-gradient-to-r from-yellow-400 to-orange-500 text-white" };
+        return { ...firstColor, label: "#1 Trending" };
       case 1:
         return { icon: <Award className="h-5 w-5 text-white" />, label: "#2 Trending", color: "bg-gradient-to-r from-pink-500 to-rose-500 text-white" };
       case 2:
@@ -146,7 +152,7 @@ const Trending = () => {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center">
-                    <Crown className="mr-2 h-5 w-5 text-yellow-500" />
+                    <Crown className={`mr-2 h-5 w-5 ${isMobile ? 'text-orange-500' : 'text-yellow-500'}`} />
                     Most Popular
                   </CardTitle>
                 </CardHeader>

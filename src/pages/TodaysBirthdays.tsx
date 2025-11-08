@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import CelebrityCard from "@/components/CelebrityCard";
 import { celebrities, getTodaysBirthdays } from "@/data/celebrities";
 import { useEffect, useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const TodaysBirthdays = () => {
   const today = new Date();
@@ -20,6 +21,7 @@ const TodaysBirthdays = () => {
   const upcomingCelebs = celebrities.slice(3, 6);
   
   const [animated, setAnimated] = useState(false);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     setAnimated(true);
@@ -61,13 +63,13 @@ const TodaysBirthdays = () => {
                   <PartyPopper className="h-16 w-16 animate-bounce" />
                 </div>
                 <div className="absolute -top-2 -right-2">
-                  <Sparkles className="h-8 w-8 text-yellow-300 animate-spin-slow" />
+                  <Sparkles className={`h-8 w-8 ${isMobile ? 'text-orange-300' : 'text-yellow-300'} animate-spin-slow`} />
                 </div>
               </div>
             </div>
             
             <h1 className={`text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 transition-all duration-1000 delay-200 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              <span className="bg-gradient-to-r from-white via-yellow-200 to-white bg-clip-text text-transparent animate-gradient">
+              <span className={`bg-gradient-to-r from-white ${isMobile ? 'via-orange-200' : 'via-yellow-200'} to-white bg-clip-text text-transparent animate-gradient`}>
                 Today's Birthday
               </span>
               <br />
@@ -165,8 +167,8 @@ const TodaysBirthdays = () => {
                       {/* Modern Birthday Badge */}
                       <div className="absolute -top-3 -left-3 z-20">
                         <div className="relative">
-                          <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-pink-500 rounded-full blur-md opacity-75 animate-pulse"></div>
-                          <div className="relative bg-gradient-to-r from-yellow-400 to-pink-500 text-white px-4 py-1.5 rounded-full text-xs font-bold shadow-xl flex items-center space-x-1">
+                          <div className={`absolute inset-0 bg-gradient-to-r ${isMobile ? 'from-orange-400' : 'from-yellow-400'} to-pink-500 rounded-full blur-md opacity-75 animate-pulse`}></div>
+                          <div className={`relative bg-gradient-to-r ${isMobile ? 'from-orange-400' : 'from-yellow-400'} to-pink-500 text-white px-4 py-1.5 rounded-full text-xs font-bold shadow-xl flex items-center space-x-1`}>
                             <Sparkles className="h-3 w-3" />
                             <span>Birthday!</span>
                           </div>
@@ -247,9 +249,9 @@ const TodaysBirthdays = () => {
               <Card className="text-center border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-xl group">
                 <CardContent className="pt-8 pb-8">
                   <div className="relative inline-block mb-6">
-                    <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-pink-500 rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
-                    <div className="relative bg-gradient-to-br from-yellow-400/20 to-pink-500/20 w-20 h-20 rounded-full flex items-center justify-center border-2 border-primary/20 group-hover:scale-110 transition-transform">
-                      <Gift className="h-10 w-10 text-yellow-500" />
+                    <div className={`absolute inset-0 bg-gradient-to-r ${isMobile ? 'from-orange-400' : 'from-yellow-400'} to-pink-500 rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity`}></div>
+                    <div className={`relative bg-gradient-to-br ${isMobile ? 'from-orange-400/20' : 'from-yellow-400/20'} to-pink-500/20 w-20 h-20 rounded-full flex items-center justify-center border-2 border-primary/20 group-hover:scale-110 transition-transform`}>
+                      <Gift className={`h-10 w-10 ${isMobile ? 'text-orange-500' : 'text-yellow-500'}`} />
                     </div>
                   </div>
                   <h3 className="text-4xl font-extrabold text-foreground mb-2 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
@@ -305,7 +307,7 @@ const TodaysBirthdays = () => {
                 <div className="mb-8">
                   <div className="inline-flex items-center justify-center space-x-2 mb-6">
                     <Cake className="h-12 w-12 text-primary animate-bounce" />
-                    <Sparkles className="h-8 w-8 text-yellow-400 animate-pulse" />
+                    <Sparkles className={`h-8 w-8 ${isMobile ? 'text-orange-400' : 'text-yellow-400'} animate-pulse`} />
                   </div>
                   <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6">
                     <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient">
