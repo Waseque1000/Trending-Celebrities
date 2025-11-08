@@ -40,7 +40,7 @@ const CelebrityCard = ({
     <Card className="group hover:shadow-card-hover transition-all duration-200 bg-card border-border overflow-hidden">
       <div className="relative">
         {/* Celebrity Image */}
-        <div className="aspect-[3/4] overflow-hidden">
+        <div className="aspect-[4/4] overflow-hidden">
           <img
             src={image}
             alt={name}
@@ -50,7 +50,7 @@ const CelebrityCard = ({
         </div>
 
         {/* Age Badge */}
-        <div className="absolute top-7 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded-full">
+        <div className="absolute top-10 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded-full">
           Age {age}
         </div>
 
