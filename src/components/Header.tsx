@@ -1,4 +1,4 @@
-import { Search, Menu, Star, Calendar, TrendingUp } from "lucide-react";
+import { Search, Menu, Star, Calendar, TrendingUp, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState, useMemo, useRef, useEffect } from "react";
@@ -26,7 +26,10 @@ const Header = () => {
   // Close search dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target as Node)
+      ) {
         setIsSearchFocused(false);
       }
     };
@@ -64,7 +67,9 @@ const Header = () => {
             </div>
             <div>
               <h1 className="text-xl font-bold text-foreground">OTT Celebs</h1>
-              <p className="text-xs text-muted-foreground">Entertainment Portal</p>
+              <p className="text-xs text-muted-foreground">
+                Entertainment Portal
+              </p>
             </div>
           </Link>
 
@@ -72,26 +77,43 @@ const Header = () => {
           <nav className="hidden md:flex items-center space-x-6">
             <Link
               to="/"
-              className={`${isActive("/") ? "text-primary font-semibold border-b-2 border-primary pb-1" : "text-foreground"} hover:text-primary transition-colors`}
+              className={`${
+                isActive("/")
+                  ? "text-primary font-semibold border-b-2 border-primary pb-1"
+                  : "text-foreground"
+              } hover:text-primary transition-colors`}
             >
               Home
             </Link>
             <Link
               to="/celebrities"
-              className={`${isActive("/celebrities") ? "text-primary font-semibold border-b-2 border-primary pb-1" : "text-muted-foreground"} hover:text-primary transition-colors`}
+              className={`${
+                isActive("/celebrities")
+                  ? "text-primary font-semibold border-b-2 border-primary pb-1"
+                  : "text-muted-foreground"
+              } hover:text-primary  flex items-center transition-colors`}
             >
-              Celebrities
+              <User className="h-4 w-4" />
+              <span>Celebrities</span>
             </Link>
             <Link
               to="/today"
-              className={`${isActive("/today") ? "text-primary font-semibold border-b-2 border-primary pb-1" : "text-muted-foreground"} hover:text-primary transition-colors flex items-center space-x-1`}
+              className={`${
+                isActive("/today")
+                  ? "text-primary font-semibold border-b-2 border-primary pb-1"
+                  : "text-muted-foreground"
+              } hover:text-primary transition-colors flex items-center space-x-1`}
             >
               <Calendar className="h-4 w-4" />
               <span>Today's Birthdays</span>
             </Link>
             <Link
               to="/trending"
-              className={`${isActive("/trending") ? "text-primary font-semibold border-b-2 border-primary pb-1" : "text-muted-foreground"} hover:text-primary transition-colors flex items-center space-x-1`}
+              className={`${
+                isActive("/trending")
+                  ? "text-primary font-semibold border-b-2 border-primary pb-1"
+                  : "text-muted-foreground"
+              } hover:text-primary transition-colors flex items-center space-x-1`}
             >
               <TrendingUp className="h-4 w-4" />
               <span>Trending</span>
@@ -115,21 +137,33 @@ const Header = () => {
             <div className="flex flex-col space-y-3">
               <Link
                 to="/"
-                className={`${isActive("/") ? "text-primary font-semibold" : "text-foreground"} hover:text-primary transition-colors`}
+                className={`${
+                  isActive("/")
+                    ? "text-primary font-semibold"
+                    : "text-foreground"
+                } hover:text-primary transition-colors`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Home
               </Link>
               <Link
                 to="/celebrities"
-                className={`${isActive("/celebrities") ? "text-primary font-semibold" : "text-muted-foreground"} hover:text-primary transition-colors`}
+                className={`${
+                  isActive("/celebrities")
+                    ? "text-primary font-semibold"
+                    : "text-muted-foreground"
+                } hover:text-primary transition-colors`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Celebrities
               </Link>
               <Link
                 to="/today"
-                className={`${isActive("/today") ? "text-primary font-semibold" : "text-muted-foreground"} hover:text-primary transition-colors flex items-center space-x-2`}
+                className={`${
+                  isActive("/today")
+                    ? "text-primary font-semibold"
+                    : "text-muted-foreground"
+                } hover:text-primary transition-colors flex items-center space-x-2`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 <Calendar className="h-4 w-4" />
@@ -137,7 +171,11 @@ const Header = () => {
               </Link>
               <Link
                 to="/trending"
-                className={`${isActive("/trending") ? "text-primary font-semibold" : "text-muted-foreground"} hover:text-primary transition-colors flex items-center space-x-2`}
+                className={`${
+                  isActive("/trending")
+                    ? "text-primary font-semibold"
+                    : "text-muted-foreground"
+                } hover:text-primary transition-colors flex items-center space-x-2`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 <TrendingUp className="h-4 w-4" />
@@ -179,8 +217,13 @@ const Header = () => {
                             className="w-full flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-muted transition-colors text-left"
                           >
                             <Avatar className="h-10 w-10 flex-shrink-0">
-                              <AvatarImage src={celebrity.image} alt={celebrity.name} />
-                              <AvatarFallback>{celebrity.name.charAt(0)}</AvatarFallback>
+                              <AvatarImage
+                                src={celebrity.image}
+                                alt={celebrity.name}
+                              />
+                              <AvatarFallback>
+                                {celebrity.name.charAt(0)}
+                              </AvatarFallback>
                             </Avatar>
                             <div className="flex-1 min-w-0">
                               <div className="font-medium text-foreground truncate">
