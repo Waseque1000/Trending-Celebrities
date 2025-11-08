@@ -24,7 +24,7 @@ const Trending = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white">
       {/* Header */}
       <div className="bg-gradient-hero text-primary-foreground py-16">
         <div className="container mx-auto px-4 text-center">
