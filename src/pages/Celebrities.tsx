@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Search, Filter, Grid, List, SortAsc, SortDesc } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -6,13 +6,32 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge";
 import CelebrityCard from "@/components/CelebrityCard";
 import { celebrities, searchCelebrities } from "@/data/celebrities";
+import { useSearchParams } from "react-router-dom";
 
 const Celebrities = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialSearch = searchParams.get("search") || "";
+  const [searchQuery, setSearchQuery] = useState(initialSearch);
   const [sortBy, setSortBy] = useState("name");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const [filterProfession, setFilterProfession] = useState("all");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+
+  // Update search query from URL params when component mounts or URL changes
+  useEffect(() => {
+    const searchParam = searchParams.get("search") || "";
+    setSearchQuery(searchParam);
+  }, [searchParams]);
+
+  // Update URL when search query changes (debounced or on blur)
+  const handleSearchChange = (value: string) => {
+    setSearchQuery(value);
+    if (value.trim()) {
+      setSearchParams({ search: value.trim() });
+    } else {
+      setSearchParams({});
+    }
+  };
 
   // Get unique professions for filter
   const professions = useMemo(() => {
@@ -95,8 +114,8 @@ const Celebrities = () => {
                 type="text"
                 placeholder="Search by name, profession, or tags..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 text-base"
+                onChange={(e) => handleSearchChange(e.target.value)}
+                className="pl-10 text-base  border-input-border-blue-500 focus:ring-blue-500"
               />
             </div>
 
@@ -182,7 +201,10 @@ const Celebrities = () => {
                   <Badge variant="outline" className="gap-1">
                     Search: {searchQuery}
                     <button 
-                      onClick={() => setSearchQuery("")}
+                      onClick={() => {
+                        setSearchQuery("");
+                        setSearchParams({});
+                      }}
                       className="ml-1 hover:text-destructive"
                     >
                       ×
@@ -225,6 +247,7 @@ const Celebrities = () => {
                 onClick={() => {
                   setSearchQuery("");
                   setFilterProfession("all");
+                  setSearchParams({});
                 }}
               >
                 Clear all filters

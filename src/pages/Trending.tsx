@@ -12,13 +12,13 @@ const Trending = () => {
   const getTrendingRank = (index: number) => {
     switch (index) {
       case 0:
-        return { icon: <Crown className="h-5 w-5 text-yellow-500" />, label: "#1 Trending", color: "bg-yellow-50 text-yellow-700" };
+        return { icon: <Crown className="h-5 w-5 text-yellow-400" />, label: "#1 Trending", color: "bg-gradient-to-r from-yellow-400 to-orange-500 text-white" };
       case 1:
-        return { icon: <Award className="h-5 w-5 text-gray-400" />, label: "#2 Trending", color: "bg-gray-50 text-gray-700" };
+        return { icon: <Award className="h-5 w-5 text-white" />, label: "#2 Trending", color: "bg-gradient-to-r from-pink-500 to-rose-500 text-white" };
       case 2:
-        return { icon: <Award className="h-5 w-5 text-amber-600" />, label: "#3 Trending", color: "bg-amber-50 text-amber-700" };
+        return { icon: <Award className="h-5 w-5 text-white" />, label: "#3 Trending", color: "bg-gradient-to-r from-purple-500 to-indigo-500 text-white" };
       default:
-        return { icon: <Star className="h-5 w-5 text-primary" />, label: `#${index + 1} Trending`, color: "bg-primary/10 text-primary" };
+        return { icon: <Star className="h-5 w-5 text-white" />, label: `#${index + 1} Trending`, color: "bg-gradient-to-r from-primary to-accent text-white" };
     }
   };
 
@@ -77,7 +77,7 @@ const Trending = () => {
                         tags={celebrity.tags}
                       />
                       {/* Trending Badge */}
-                      <div className={`absolute -top-2 -right-2 px-3 py-1 rounded-full text-sm font-semibold shadow-lg flex items-center space-x-1 ${ranking.color}`}>
+                      <div className={`absolute -top-2 -right-2 px-3 py-1.5 rounded-full text-sm font-bold shadow-xl flex items-center space-x-1 border border-white/20 ${ranking.color}`}>
                         {ranking.icon}
                         <span className="hidden sm:inline">{ranking.label}</span>
                         <span className="sm:hidden">#{index + 1}</span>

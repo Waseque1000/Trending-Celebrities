@@ -36,6 +36,7 @@ const CelebrityCard = ({
   };
 
   return (
+    <Link to={`/celebrity/${id}`} className="block group-hover:text-primary transition-colors">
     <Card className="group hover:shadow-card-hover transition-all duration-200 bg-card border-border overflow-hidden">
       <div className="relative">
         {/* Celebrity Image */}
@@ -49,7 +50,7 @@ const CelebrityCard = ({
         </div>
 
         {/* Age Badge */}
-        <div className="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded-full">
+        <div className="absolute top-7 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded-full">
           Age {age}
         </div>
 
@@ -57,7 +58,7 @@ const CelebrityCard = ({
         <Button
           variant="ghost"
           size="sm"
-          className="absolute top-2 left-2 bg-white/90 hover:bg-white p-1 h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+          className="absolute top-7 left-4 bg-white/90 hover:bg-white p-1 h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
           onClick={(e) => {
             e.preventDefault();
             setIsFavorited(!isFavorited);
@@ -81,11 +82,12 @@ const CelebrityCard = ({
 
       <CardContent className="p-4">
         {/* Celebrity Name & Profession */}
-        <Link to={`/celebrity/${id}`} className="block group-hover:text-primary transition-colors">
-          <h3 className="font-semibold text-lg text-foreground mb-1 truncate">
+        
+         
+        
+        <h3 className="font-semibold text-lg text-foreground mb-1 truncate">
             {name}
           </h3>
-        </Link>
         
         <p className="text-primary text-sm font-medium mb-3">
           {profession}
@@ -135,6 +137,7 @@ const CelebrityCard = ({
         </div>
       </CardContent>
     </Card>
+    </Link>
   );
 };
 

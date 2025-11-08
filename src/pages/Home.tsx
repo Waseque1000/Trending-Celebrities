@@ -36,7 +36,7 @@ const Home = () => {
                 Browse All Celebrities
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+            <Button asChild size="lg" variant="outline" className="border-white text-black hover:bg-white hover:text-primary">
               <Link to="/today">
                 <Calendar className="mr-2 h-5 w-5" />
                 Today's Birthdays
@@ -103,7 +103,7 @@ const Home = () => {
                 tags={celebrity.tags}
               />
             ))}
-          </div>
+          </div>           
           
           <div className="text-center">
             <Button asChild variant="outline" size="lg">
